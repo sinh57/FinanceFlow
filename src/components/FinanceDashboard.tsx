@@ -260,6 +260,7 @@ function OverviewTab({
   categories,
   expenseTrend,
   recentTransactions,
+  isDark,
 }: {
   accounts: Account[];
   totalBalance: number;
@@ -268,6 +269,7 @@ function OverviewTab({
   categories: ReturnType<typeof useFinanceState>['state']['categories'];
   expenseTrend: 'up' | 'down' | 'stable';
   recentTransactions: Transaction[];
+  isDark: boolean;
 }) {
   return (
     <div className="space-y-6">
@@ -281,6 +283,7 @@ function OverviewTab({
             </svg>
           }
           color="emerald"
+          isDark={isDark}
         />
         <InsightCard
           title="Monthly Income"
@@ -291,6 +294,7 @@ function OverviewTab({
             </svg>
           }
           color="cyan"
+          isDark={isDark}
         />
         <InsightCard
           title="Monthly Expenses"
@@ -302,6 +306,7 @@ function OverviewTab({
             </svg>
           }
           color="rose"
+          isDark={isDark}
         />
         <InsightCard
           title="Savings Rate"
@@ -312,31 +317,32 @@ function OverviewTab({
             </svg>
           }
           color="violet"
+          isDark={isDark}
         />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white/5 rounded-2xl border border-white/10 p-6">
-          <h3 className="text-lg font-semibold mb-4 text-white">Income vs Expenses</h3>
-          <BarChart data={insights.monthlyTrend} />
+        <div className={`lg:col-span-2 rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Income vs Expenses</h3>
+          <BarChart data={insights.monthlyTrend} isDark={isDark} />
         </div>
 
-        <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
-          <h3 className="text-lg font-semibold mb-4 text-white">Accounts</h3>
+        <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Accounts</h3>
           <div className="space-y-3">
             {accounts.map((account) => (
               <div
                 key={account.id}
-                className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5"
+                className={`flex items-center justify-between p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/5' : 'bg-gray-50 border-gray-100'}`}
               >
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{account.icon}</span>
                   <div>
-                    <p className="font-medium text-white">{account.name}</p>
+                    <p className={`font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>{account.name}</p>
                     <p className="text-xs text-gray-500 capitalize">{account.type}</p>
                   </div>
                 </div>
-                <p className="font-semibold text-emerald-400">{formatCurrency(account.balance)}</p>
+                <p className="font-semibold text-emerald-500">{formatCurrency(account.balance)}</p>
               </div>
             ))}
           </div>
@@ -344,8 +350,8 @@ function OverviewTab({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
-          <h3 className="text-lg font-semibold mb-4 text-white">Budget Status</h3>
+        <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Budget Status</h3>
           <div className="space-y-4">
             {budgetStatuses.slice(0, 4).map(({ budget, spent, percentage, isOverBudget, isWarning }) => {
               const category = getCategoryById(categories, budget.categoryId);
@@ -354,13 +360,13 @@ function OverviewTab({
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span>{category?.icon}</span>
-                      <span className="text-sm font-medium text-gray-300">{category?.name}</span>
+                      <span className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{category?.name}</span>
                     </div>
-                    <span className={`text-sm font-semibold ${isOverBudget ? 'text-red-400' : isWarning ? 'text-amber-400' : 'text-emerald-400'}`}>
+                    <span className={`text-sm font-semibold ${isOverBudget ? 'text-red-500' : isWarning ? 'text-amber-500' : 'text-emerald-500'}`}>
                       {formatCurrency(spent)} / {formatCurrency(budget.limit)}
                     </span>
                   </div>
-                  <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                  <div className={`h-2 rounded-full overflow-hidden ${isDark ? 'bg-white/10' : 'bg-gray-200'}`}>
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
                         isOverBudget ? 'bg-red-500' : isWarning ? 'bg-amber-500' : 'bg-emerald-500'
@@ -374,24 +380,24 @@ function OverviewTab({
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
-          <h3 className="text-lg font-semibold mb-4 text-white">Recent Transactions</h3>
+        <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Recent Transactions</h3>
           <div className="space-y-3">
             {recentTransactions.map((transaction) => {
               const category = getCategoryById(categories, transaction.categoryId);
               return (
                 <div
                   key={transaction.id}
-                  className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5"
+                  className={`flex items-center justify-between p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/5' : 'bg-gray-50 border-gray-100'}`}
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-xl">{category?.icon}</span>
                     <div>
-                      <p className="font-medium text-white text-sm">{transaction.description}</p>
+                      <p className={`font-medium text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>{transaction.description}</p>
                       <p className="text-xs text-gray-500">{formatDate(transaction.date)}</p>
                     </div>
                   </div>
-                  <p className={`font-semibold ${transaction.type === 'income' ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  <p className={`font-semibold ${transaction.type === 'income' ? 'text-emerald-500' : 'text-rose-500'}`}>
                     {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount)}
                   </p>
                 </div>
