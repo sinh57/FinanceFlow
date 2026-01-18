@@ -13,6 +13,8 @@ import {
   TransactionType,
   Account,
   Budget,
+  CurrencyCode,
+  CURRENCIES,
 } from '@/lib/finance';
 
 type TabType = 'overview' | 'transactions' | 'insights' | 'settings';
