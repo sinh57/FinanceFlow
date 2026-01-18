@@ -100,6 +100,7 @@ export function getDefaultState(): FinanceState {
     transactions: generateSeedTransactions(),
     budgets: defaultBudgets,
     theme: 'dark',
+    currency: 'INR',
   };
 }
 
