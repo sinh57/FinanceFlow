@@ -1022,7 +1022,7 @@ function InsightsTab({
           <div className="space-y-6">
             <div className={`p-4 rounded-xl border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'}`}>
               <p className="text-sm text-emerald-600 mb-1">Total Income</p>
-              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.totalIncome)}</p>
+              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.totalIncome, currency)}</p>
             </div>
             <div className={`p-4 rounded-xl border ${isDark ? 'bg-rose-500/10 border-rose-500/20' : 'bg-rose-50 border-rose-200'}`}>
               <p className="text-sm text-rose-600 mb-1">Total Expenses</p>
