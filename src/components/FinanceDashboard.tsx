@@ -1381,7 +1381,7 @@ function SettingsTab({
                   </svg>
                 </button>
               </div>
-              <p className="mt-3 text-2xl font-bold text-emerald-500">{formatCurrency(account.balance)}</p>
+              <p className="mt-3 text-2xl font-bold text-emerald-500">{formatCurrency(account.balance, currency)}</p>
             </div>
           ))}
         </div>
