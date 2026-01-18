@@ -52,6 +52,7 @@ export interface FinanceState {
   transactions: Transaction[];
   budgets: Budget[];
   theme: 'light' | 'dark';
+  currency: CurrencyCode;
 }
 
 export interface FilterOptions {
