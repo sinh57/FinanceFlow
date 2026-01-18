@@ -116,6 +116,7 @@ export function FinanceDashboard() {
             setShowAddTransaction={setShowAddTransaction}
             addTransaction={addTransaction}
             deleteTransaction={deleteTransaction}
+            isDark={isDark}
           />
         )}
 
@@ -124,6 +125,7 @@ export function FinanceDashboard() {
             insights={insights}
             categories={state.categories}
             transactions={state.transactions}
+            isDark={isDark}
           />
         )}
 
@@ -143,6 +145,7 @@ export function FinanceDashboard() {
             updateBudget={updateBudget}
             deleteBudget={deleteBudget}
             reset={reset}
+            isDark={isDark}
           />
         )}
       </main>
