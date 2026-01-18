@@ -1008,7 +1008,7 @@ function InsightsTab({
                     <span className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{category?.icon} {category?.name}</span>
                   </div>
                   <div className="text-right">
-                    <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(item.amount)}</span>
+                    <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(item.amount, currency)}</span>
                     <span className="text-xs text-gray-500 ml-2">({item.percentage.toFixed(1)}%)</span>
                   </div>
                 </div>
