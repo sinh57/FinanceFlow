@@ -45,6 +45,8 @@ export function FinanceDashboard() {
   const [showAddAccount, setShowAddAccount] = useState(false);
   const [showAddBudget, setShowAddBudget] = useState(false);
 
+  const isDark = state.theme === 'dark';
+
   const debouncedSearch = useMemo(
     () =>
       debounce((query: string) => {
