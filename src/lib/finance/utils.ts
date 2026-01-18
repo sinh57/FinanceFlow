@@ -35,14 +35,14 @@ export function getMonthYear(dateString: string): string {
   });
 }
 
-export function debounce<T extends (...args: unknown[]) => void>(
-  fn: T,
+export function debounce<T extends string>(
+  fn: (arg: T) => void,
   delay: number
-): (...args: Parameters<T>) => void {
+): (arg: T) => void {
   let timeoutId: ReturnType<typeof setTimeout>;
-  return (...args: Parameters<T>) => {
+  return (arg: T) => {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(...args), delay);
+    timeoutId = setTimeout(() => fn(arg), delay);
   };
 }
 
