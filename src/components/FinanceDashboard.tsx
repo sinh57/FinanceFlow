@@ -1315,9 +1315,9 @@ function SettingsTab({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
+      <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-white">Accounts</h3>
+          <h3 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>Accounts</h3>
           <button
             onClick={() => setShowAddAccount(true)}
             className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-semibold rounded-xl text-sm hover:shadow-lg hover:shadow-emerald-500/20 transition"
@@ -1333,26 +1333,26 @@ function SettingsTab({
           {accounts.map((account) => (
             <div
               key={account.id}
-              className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition"
+              className={`p-4 rounded-xl border transition ${isDark ? 'bg-white/5 border-white/10 hover:border-white/20' : 'bg-gray-50 border-gray-200 hover:border-gray-300'}`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">{account.icon}</span>
                   <div>
-                    <p className="font-semibold text-white">{account.name}</p>
+                    <p className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{account.name}</p>
                     <p className="text-xs text-gray-500 capitalize">{account.type}</p>
                   </div>
                 </div>
                 <button
                   onClick={() => deleteAccount(account.id)}
-                  className="p-1.5 text-gray-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition"
+                  className="p-1.5 text-gray-500 hover:text-rose-500 hover:bg-rose-500/10 rounded-lg transition"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                   </svg>
                 </button>
               </div>
-              <p className="mt-3 text-2xl font-bold text-emerald-400">{formatCurrency(account.balance)}</p>
+              <p className="mt-3 text-2xl font-bold text-emerald-500">{formatCurrency(account.balance)}</p>
             </div>
           ))}
         </div>
