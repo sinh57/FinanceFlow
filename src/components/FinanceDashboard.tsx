@@ -87,7 +87,7 @@ export function FinanceDashboard() {
       <Header theme={state.theme} toggleTheme={toggleTheme} isDark={isDark} />
       
       <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+        <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} isDark={isDark} />
 
         {activeTab === 'overview' && (
           <OverviewTab
