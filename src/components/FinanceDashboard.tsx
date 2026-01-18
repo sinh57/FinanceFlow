@@ -407,7 +407,7 @@ function InsightCard({
 }: {
   title: string;
   value: string;
-  icon: JSX.Element;
+  icon: ReactNode;
   color: 'emerald' | 'cyan' | 'rose' | 'violet';
   trend?: 'up' | 'down' | 'stable';
 }) {
