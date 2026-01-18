@@ -948,7 +948,7 @@ function TransactionsTab({
                     <td className={`py-4 px-6 text-right font-semibold ${
                       transaction.type === 'income' ? 'text-emerald-500' : 'text-rose-500'
                     }`}>
-                      {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount)}
+                      {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount, currency)}
                     </td>
                     <td className="py-4 px-6 text-center">
                       <button
