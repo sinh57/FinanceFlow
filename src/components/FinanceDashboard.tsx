@@ -605,6 +605,7 @@ function TransactionsTab({
   setShowAddTransaction,
   addTransaction,
   deleteTransaction,
+  isDark,
 }: {
   transactions: Transaction[];
   categories: ReturnType<typeof useFinanceState>['state']['categories'];
@@ -618,6 +619,7 @@ function TransactionsTab({
   setShowAddTransaction: (show: boolean) => void;
   addTransaction: ReturnType<typeof useFinanceState>['addTransaction'];
   deleteTransaction: (id: string) => void;
+  isDark: boolean;
 }) {
   const [newTransaction, setNewTransaction] = useState<{
     type: TransactionType;
