@@ -590,7 +590,7 @@ function BarChart({ data, isDark, currency }: { data: { month: string; income: n
     ctx.fillRect(width - 70, 8, 12, 12);
     ctx.fillStyle = legendColor;
     ctx.fillText('Expenses', width - 52, 18);
-  }, [data, isDark]);
+  }, [data, isDark, currency]);
 
   return (
     <canvas
@@ -1235,7 +1235,7 @@ function LineChart({ data, isDark }: { data: { month: string; income: number; ex
     ctx.fillRect(width - 70, 8, 12, 12);
     ctx.fillStyle = legendColor;
     ctx.fillText('Expenses', width - 52, 18);
-  }, [data, isDark]);
+  }, [data, isDark, currency]);
 
   if (data.length === 0) {
     return (
