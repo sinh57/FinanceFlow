@@ -103,6 +103,7 @@ export function FinanceDashboard() {
             expenseTrend={expenseTrend}
             recentTransactions={filteredTransactions.slice(0, 5)}
             isDark={isDark}
+            currency={currency}
           />
         )}
 
@@ -121,6 +122,7 @@ export function FinanceDashboard() {
             addTransaction={addTransaction}
             deleteTransaction={deleteTransaction}
             isDark={isDark}
+            currency={currency}
           />
         )}
 
@@ -130,6 +132,7 @@ export function FinanceDashboard() {
             categories={state.categories}
             transactions={state.transactions}
             isDark={isDark}
+            currency={currency}
           />
         )}
 
@@ -150,6 +153,7 @@ export function FinanceDashboard() {
             deleteBudget={deleteBudget}
             reset={reset}
             isDark={isDark}
+            currency={currency}
           />
         )}
       </main>
