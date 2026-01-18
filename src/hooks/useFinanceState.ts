@@ -51,6 +51,13 @@ export function useFinanceState() {
     }));
   }, []);
 
+  const setCurrency = useCallback((currency: CurrencyCode) => {
+    setState((prev) => ({
+      ...prev,
+      currency,
+    }));
+  }, []);
+
   const addTransaction = useCallback((transaction: Omit<Transaction, 'id' | 'createdAt'>) => {
     const newTransaction: Transaction = {
       ...transaction,
