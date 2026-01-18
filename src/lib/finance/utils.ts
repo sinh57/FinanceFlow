@@ -1,13 +1,24 @@
-import { Transaction, FilterOptions, Category, Account } from './types';
+import { Transaction, FilterOptions, Category, Account, CurrencyCode, CurrencyInfo } from './types';
+
+export const CURRENCIES: Record<CurrencyCode, CurrencyInfo> = {
+  INR: { code: 'INR', symbol: '₹', name: 'Indian Rupee', locale: 'en-IN' },
+  USD: { code: 'USD', symbol: '$', name: 'US Dollar', locale: 'en-US' },
+  EUR: { code: 'EUR', symbol: '€', name: 'Euro', locale: 'de-DE' },
+  GBP: { code: 'GBP', symbol: '£', name: 'British Pound', locale: 'en-GB' },
+  JPY: { code: 'JPY', symbol: '¥', name: 'Japanese Yen', locale: 'ja-JP' },
+  AUD: { code: 'AUD', symbol: 'A$', name: 'Australian Dollar', locale: 'en-AU' },
+  CAD: { code: 'CAD', symbol: 'C$', name: 'Canadian Dollar', locale: 'en-CA' },
+};
 
 export function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
 
-export function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('en-US', {
+export function formatCurrency(amount: number, currency: CurrencyCode = 'INR'): string {
+  const currencyInfo = CURRENCIES[currency];
+  return new Intl.NumberFormat(currencyInfo.locale, {
     style: 'currency',
-    currency: 'USD',
+    currency: currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   }).format(amount);
