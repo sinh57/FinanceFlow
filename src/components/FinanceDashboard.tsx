@@ -849,12 +849,12 @@ function TransactionsTab({
               <select
                 value={newTransaction.accountId}
                 onChange={(e) => setNewTransaction((prev) => ({ ...prev, accountId: e.target.value }))}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                className="w-full px-4 py-3 bg-[#1a1a2e] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
                 required
               >
-                <option value="">Select Account</option>
+                <option value="" className="bg-[#1a1a2e] text-white">Select Account</option>
                 {accounts.map((acc) => (
-                  <option key={acc.id} value={acc.id}>
+                  <option key={acc.id} value={acc.id} className="bg-[#1a1a2e] text-white">
                     {acc.icon} {acc.name}
                   </option>
                 ))}
