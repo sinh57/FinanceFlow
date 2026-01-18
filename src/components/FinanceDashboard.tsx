@@ -1555,10 +1555,10 @@ function SettingsTab({
                 <select
                   value={newBudget.period}
                   onChange={(e) => setNewBudget((prev) => ({ ...prev, period: e.target.value as 'monthly' | 'yearly' }))}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                  className="w-full px-4 py-3 bg-[#1a1a2e] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
                 >
-                  <option value="monthly">Monthly</option>
-                  <option value="yearly">Yearly</option>
+                  <option value="monthly" className="bg-[#1a1a2e] text-white">Monthly</option>
+                  <option value="yearly" className="bg-[#1a1a2e] text-white">Yearly</option>
                 </select>
 
                 <div className="flex gap-3 pt-2">
