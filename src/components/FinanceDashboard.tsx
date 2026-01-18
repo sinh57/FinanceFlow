@@ -1403,11 +1403,11 @@ function SettingsTab({
                 <select
                   value={newAccount.type}
                   onChange={(e) => setNewAccount((prev) => ({ ...prev, type: e.target.value as 'cash' | 'bank' | 'wallet' }))}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                  className="w-full px-4 py-3 bg-[#1a1a2e] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
                 >
-                  <option value="bank">🏦 Bank Account</option>
-                  <option value="cash">💵 Cash</option>
-                  <option value="wallet">📱 Digital Wallet</option>
+                  <option value="bank" className="bg-[#1a1a2e] text-white">🏦 Bank Account</option>
+                  <option value="cash" className="bg-[#1a1a2e] text-white">💵 Cash</option>
+                  <option value="wallet" className="bg-[#1a1a2e] text-white">📱 Digital Wallet</option>
                 </select>
 
                 <input
