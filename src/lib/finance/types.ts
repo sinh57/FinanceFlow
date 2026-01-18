@@ -1,5 +1,13 @@
 export type TransactionType = 'income' | 'expense';
 export type AccountType = 'cash' | 'bank' | 'wallet';
+export type CurrencyCode = 'INR' | 'USD' | 'EUR' | 'GBP' | 'JPY' | 'AUD' | 'CAD';
+
+export interface CurrencyInfo {
+  code: CurrencyCode;
+  symbol: string;
+  name: string;
+  locale: string;
+}
 
 export interface Account {
   id: string;
