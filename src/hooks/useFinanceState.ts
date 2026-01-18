@@ -184,6 +184,7 @@ export function useFinanceState() {
     state,
     isLoaded,
     toggleTheme,
+    setCurrency,
     addTransaction,
     updateTransaction,
     deleteTransaction,
