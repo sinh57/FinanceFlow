@@ -684,7 +684,7 @@ function TransactionsTab({
             placeholder="Search transactions..."
             value={searchQuery}
             onChange={onSearchChange}
-            className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50"
+            className={`w-full pl-10 pr-4 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white placeholder-gray-500' : 'bg-white border border-gray-200 text-gray-900 placeholder-gray-400'}`}
           />
         </div>
         <button
@@ -702,7 +702,7 @@ function TransactionsTab({
         <select
           value={filters.type || ''}
           onChange={(e) => setFilters((prev) => ({ ...prev, type: e.target.value as TransactionType || undefined }))}
-          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
         >
           <option value="">All Types</option>
           <option value="income">Income</option>
@@ -712,7 +712,7 @@ function TransactionsTab({
         <select
           value={filters.categoryId || ''}
           onChange={(e) => setFilters((prev) => ({ ...prev, categoryId: e.target.value || undefined }))}
-          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
         >
           <option value="">All Categories</option>
           {categories.map((cat) => (
@@ -725,7 +725,7 @@ function TransactionsTab({
         <select
           value={filters.accountId || ''}
           onChange={(e) => setFilters((prev) => ({ ...prev, accountId: e.target.value || undefined }))}
-          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
         >
           <option value="">All Accounts</option>
           {accounts.map((acc) => (
@@ -739,14 +739,14 @@ function TransactionsTab({
           type="date"
           value={filters.dateFrom || ''}
           onChange={(e) => setFilters((prev) => ({ ...prev, dateFrom: e.target.value || undefined }))}
-          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
         />
 
         <input
           type="date"
           value={filters.dateTo || ''}
           onChange={(e) => setFilters((prev) => ({ ...prev, dateTo: e.target.value || undefined }))}
-          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
         />
 
         {(filters.type || filters.categoryId || filters.accountId || filters.dateFrom || filters.dateTo) && (
