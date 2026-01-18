@@ -629,6 +629,7 @@ function TransactionsTab({
   addTransaction,
   deleteTransaction,
   isDark,
+  currency,
 }: {
   transactions: Transaction[];
   categories: ReturnType<typeof useFinanceState>['state']['categories'];
@@ -643,6 +644,7 @@ function TransactionsTab({
   addTransaction: ReturnType<typeof useFinanceState>['addTransaction'];
   deleteTransaction: (id: string) => void;
   isDark: boolean;
+  currency: CurrencyCode;
 }) {
   const [newTransaction, setNewTransaction] = useState<{
     type: TransactionType;
