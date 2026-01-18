@@ -1113,7 +1113,7 @@ function PieChart({
   );
 }
 
-function LineChart({ data }: { data: { month: string; income: number; expenses: number }[] }) {
+function LineChart({ data, isDark }: { data: { month: string; income: number; expenses: number }[]; isDark: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -1139,7 +1139,13 @@ function LineChart({ data }: { data: { month: string; income: number; expenses: 
 
     const maxValue = Math.max(...data.flatMap((d) => [d.income, d.expenses])) * 1.1;
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+    const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+    const textColor = isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.5)';
+    const labelColor = isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.6)';
+    const legendColor = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)';
+    const bgColor = isDark ? '#0a0a0f' : '#ffffff';
+
+    ctx.strokeStyle = gridColor;
     ctx.lineWidth = 1;
     for (let i = 0; i <= 4; i++) {
       const y = padding.top + (chartHeight / 4) * i;
@@ -1148,7 +1154,7 @@ function LineChart({ data }: { data: { month: string; income: number; expenses: 
       ctx.lineTo(width - padding.right, y);
       ctx.stroke();
 
-      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      ctx.fillStyle = textColor;
       ctx.font = '11px system-ui';
       ctx.textAlign = 'right';
       const value = maxValue - (maxValue / 4) * i;
@@ -1179,7 +1185,7 @@ function LineChart({ data }: { data: { month: string; income: number; expenses: 
         ctx.fill();
         ctx.beginPath();
         ctx.arc(x, y, 2, 0, 2 * Math.PI);
-        ctx.fillStyle = '#0a0a0f';
+        ctx.fillStyle = bgColor;
         ctx.fill();
       });
     };
@@ -1189,7 +1195,7 @@ function LineChart({ data }: { data: { month: string; income: number; expenses: 
 
     data.forEach((d, i) => {
       const x = padding.left + (chartWidth / (data.length - 1)) * i;
-      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      ctx.fillStyle = labelColor;
       ctx.font = '10px system-ui';
       ctx.textAlign = 'center';
       ctx.fillText(d.month.split(' ')[0], x, height - padding.bottom + 20);
@@ -1197,15 +1203,16 @@ function LineChart({ data }: { data: { month: string; income: number; expenses: 
 
     ctx.fillStyle = '#06b6d4';
     ctx.fillRect(width - 140, 8, 12, 12);
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillStyle = legendColor;
     ctx.font = '11px system-ui';
     ctx.textAlign = 'left';
     ctx.fillText('Income', width - 122, 18);
 
     ctx.fillStyle = '#f43f5e';
     ctx.fillRect(width - 70, 8, 12, 12);
+    ctx.fillStyle = legendColor;
     ctx.fillText('Expenses', width - 52, 18);
-  }, [data]);
+  }, [data, isDark]);
 
   if (data.length === 0) {
     return (
