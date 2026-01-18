@@ -1062,7 +1062,7 @@ function InsightsTab({
         </div>
         <div className={`rounded-2xl border p-6 text-center ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
           <p className="text-4xl font-bold text-cyan-500">
-            {formatCurrency(insights.totalExpenses / Math.max(1, transactions.filter((t) => t.type === 'expense').length))}
+            {formatCurrency(insights.totalExpenses / Math.max(1, transactions.filter((t) => t.type === 'expense').length), currency)}
           </p>
           <p className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Avg. Expense</p>
         </div>
