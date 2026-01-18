@@ -553,7 +553,7 @@ function BarChart({ data, isDark, currency }: { data: { month: string; income: n
       ctx.font = '11px system-ui';
       ctx.textAlign = 'right';
       const value = maxValue - (maxValue / 4) * i;
-      ctx.fillText(formatCurrency(value).replace('.00', ''), padding.left - 8, y + 4);
+      ctx.fillText(formatCurrency(value, currency).replace('.00', ''), padding.left - 8, y + 4);
     }
 
     data.forEach((d, i) => {
@@ -1181,7 +1181,7 @@ function LineChart({ data, isDark }: { data: { month: string; income: number; ex
       ctx.font = '11px system-ui';
       ctx.textAlign = 'right';
       const value = maxValue - (maxValue / 4) * i;
-      ctx.fillText(formatCurrency(value).replace('.00', ''), padding.left - 8, y + 4);
+      ctx.fillText(formatCurrency(value, currency).replace('.00', ''), padding.left - 8, y + 4);
     }
 
     const drawLine = (values: number[], color: string) => {
