@@ -1531,12 +1531,12 @@ function SettingsTab({
                 <select
                   value={newBudget.categoryId}
                   onChange={(e) => setNewBudget((prev) => ({ ...prev, categoryId: e.target.value }))}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                  className="w-full px-4 py-3 bg-[#1a1a2e] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
                   required
                 >
-                  <option value="">Select Category</option>
+                  <option value="" className="bg-[#1a1a2e] text-white">Select Category</option>
                   {availableCategories.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
+                    <option key={cat.id} value={cat.id} className="bg-[#1a1a2e] text-white">
                       {cat.icon} {cat.name}
                     </option>
                   ))}
