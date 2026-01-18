@@ -871,17 +871,17 @@ function TransactionsTab({
         </div>
       )}
 
-      <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
+      <div className={`rounded-2xl border overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-white/10">
-                <th className="text-left py-4 px-6 text-sm font-medium text-gray-400">Date</th>
-                <th className="text-left py-4 px-6 text-sm font-medium text-gray-400">Description</th>
-                <th className="text-left py-4 px-6 text-sm font-medium text-gray-400">Category</th>
-                <th className="text-left py-4 px-6 text-sm font-medium text-gray-400">Account</th>
-                <th className="text-right py-4 px-6 text-sm font-medium text-gray-400">Amount</th>
-                <th className="text-center py-4 px-6 text-sm font-medium text-gray-400">Actions</th>
+              <tr className={`border-b ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
+                <th className={`text-left py-4 px-6 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Date</th>
+                <th className={`text-left py-4 px-6 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Description</th>
+                <th className={`text-left py-4 px-6 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Category</th>
+                <th className={`text-left py-4 px-6 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Account</th>
+                <th className={`text-right py-4 px-6 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Amount</th>
+                <th className={`text-center py-4 px-6 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -889,17 +889,17 @@ function TransactionsTab({
                 const category = getCategoryById(categories, transaction.categoryId);
                 const account = getAccountById(accounts, transaction.accountId);
                 return (
-                  <tr key={transaction.id} className="border-b border-white/5 hover:bg-white/5 transition">
-                    <td className="py-4 px-6 text-sm text-gray-300">{formatDate(transaction.date)}</td>
+                  <tr key={transaction.id} className={`border-b transition ${isDark ? 'border-white/5 hover:bg-white/5' : 'border-gray-100 hover:bg-gray-50'}`}>
+                    <td className={`py-4 px-6 text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{formatDate(transaction.date)}</td>
                     <td className="py-4 px-6">
                       <div>
-                        <p className="text-sm font-medium text-white">{transaction.description || 'No description'}</p>
+                        <p className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>{transaction.description || 'No description'}</p>
                         {transaction.tags.length > 0 && (
                           <div className="flex gap-1 mt-1">
                             {transaction.tags.map((tag) => (
                               <span
                                 key={tag}
-                                className="px-2 py-0.5 text-xs bg-white/10 text-gray-400 rounded-full"
+                                className={`px-2 py-0.5 text-xs rounded-full ${isDark ? 'bg-white/10 text-gray-400' : 'bg-gray-100 text-gray-600'}`}
                               >
                                 {tag}
                               </span>
@@ -911,24 +911,24 @@ function TransactionsTab({
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-2">
                         <span>{category?.icon}</span>
-                        <span className="text-sm text-gray-300">{category?.name}</span>
+                        <span className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{category?.name}</span>
                       </div>
                     </td>
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-2">
                         <span>{account?.icon}</span>
-                        <span className="text-sm text-gray-300">{account?.name}</span>
+                        <span className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{account?.name}</span>
                       </div>
                     </td>
                     <td className={`py-4 px-6 text-right font-semibold ${
-                      transaction.type === 'income' ? 'text-emerald-400' : 'text-rose-400'
+                      transaction.type === 'income' ? 'text-emerald-500' : 'text-rose-500'
                     }`}>
                       {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount)}
                     </td>
                     <td className="py-4 px-6 text-center">
                       <button
                         onClick={() => deleteTransaction(transaction.id)}
-                        className="p-2 text-gray-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition"
+                        className="p-2 text-gray-500 hover:text-rose-500 hover:bg-rose-500/10 rounded-lg transition"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
