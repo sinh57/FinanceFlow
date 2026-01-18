@@ -727,21 +727,21 @@ function TransactionsTab({
         <select
           value={filters.type || ''}
           onChange={(e) => setFilters((prev) => ({ ...prev, type: e.target.value as TransactionType || undefined }))}
-          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
+          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-gray-900 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
         >
-          <option value="">All Types</option>
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
+          <option value="" className={isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}>All Types</option>
+          <option value="income" className={isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}>Income</option>
+          <option value="expense" className={isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}>Expense</option>
         </select>
 
         <select
           value={filters.categoryId || ''}
           onChange={(e) => setFilters((prev) => ({ ...prev, categoryId: e.target.value || undefined }))}
-          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
+          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-gray-900 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
         >
-          <option value="">All Categories</option>
+          <option value="" className={isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}>All Categories</option>
           {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
+            <option key={cat.id} value={cat.id} className={isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}>
               {cat.icon} {cat.name}
             </option>
           ))}
@@ -750,11 +750,11 @@ function TransactionsTab({
         <select
           value={filters.accountId || ''}
           onChange={(e) => setFilters((prev) => ({ ...prev, accountId: e.target.value || undefined }))}
-          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
+          className={`px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-gray-900 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
         >
-          <option value="">All Accounts</option>
+          <option value="" className={isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}>All Accounts</option>
           {accounts.map((acc) => (
-            <option key={acc.id} value={acc.id}>
+            <option key={acc.id} value={acc.id} className={isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}>
               {acc.icon} {acc.name}
             </option>
           ))}
