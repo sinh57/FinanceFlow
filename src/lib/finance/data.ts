@@ -160,6 +160,9 @@ function migrateState(oldState: FinanceState): FinanceState {
   if (oldState.theme) {
     newState.theme = oldState.theme;
   }
+  if (oldState.currency) {
+    newState.currency = oldState.currency;
+  }
 
   newState.version = CURRENT_VERSION;
   return newState;
