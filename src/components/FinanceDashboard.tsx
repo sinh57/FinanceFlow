@@ -98,6 +98,7 @@ export function FinanceDashboard() {
             categories={state.categories}
             expenseTrend={expenseTrend}
             recentTransactions={filteredTransactions.slice(0, 5)}
+            isDark={isDark}
           />
         )}
 
