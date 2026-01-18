@@ -1048,7 +1048,7 @@ function InsightsTab({
 
       <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
         <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Monthly Trend</h3>
-        <LineChart data={insights.monthlyTrend} isDark={isDark} />
+        <LineChart data={insights.monthlyTrend} isDark={isDark} currency={currency} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
