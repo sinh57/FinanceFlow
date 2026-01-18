@@ -1274,6 +1274,7 @@ function SettingsTab({
   deleteBudget,
   reset,
   isDark,
+  currency,
 }: {
   accounts: Account[];
   budgets: Budget[];
@@ -1290,6 +1291,7 @@ function SettingsTab({
   deleteBudget: (id: string) => void;
   reset: () => void;
   isDark: boolean;
+  currency: CurrencyCode;
 }) {
   const [newAccount, setNewAccount] = useState({
     name: '',
