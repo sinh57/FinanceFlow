@@ -1412,9 +1412,9 @@ function SettingsTab({
         )}
       </div>
 
-      <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
+      <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-white">Budget Limits</h3>
+          <h3 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>Budget Limits</h3>
           {availableCategories.length > 0 && (
             <button
               onClick={() => setShowAddBudget(true)}
@@ -1436,17 +1436,17 @@ function SettingsTab({
                 key={budget.id}
                 className={`p-4 rounded-xl border ${
                   isOverBudget
-                    ? 'bg-red-500/10 border-red-500/30'
+                    ? (isDark ? 'bg-red-500/10 border-red-500/30' : 'bg-red-50 border-red-200')
                     : isWarning
-                    ? 'bg-amber-500/10 border-amber-500/30'
-                    : 'bg-white/5 border-white/10'
+                    ? (isDark ? 'bg-amber-500/10 border-amber-500/30' : 'bg-amber-50 border-amber-200')
+                    : (isDark ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200')
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{category?.icon}</span>
                     <div>
-                      <p className="font-semibold text-white">{category?.name}</p>
+                      <p className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{category?.name}</p>
                       <p className="text-xs text-gray-500 capitalize">{budget.period}</p>
                     </div>
                   </div>
@@ -1455,11 +1455,11 @@ function SettingsTab({
                       type="number"
                       value={budget.limit}
                       onChange={(e) => updateBudget(budget.id, { limit: parseFloat(e.target.value) || 0 })}
-                      className="w-24 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-white text-right text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                      className={`w-24 px-3 py-1.5 rounded-lg text-right text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isDark ? 'bg-white/5 border border-white/10 text-white' : 'bg-white border border-gray-200 text-gray-900'}`}
                     />
                     <button
                       onClick={() => deleteBudget(budget.id)}
-                      className="p-1.5 text-gray-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition"
+                      className="p-1.5 text-gray-500 hover:text-rose-500 hover:bg-rose-500/10 rounded-lg transition"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -1468,12 +1468,12 @@ function SettingsTab({
                   </div>
                 </div>
                 <div className="flex items-center justify-between text-sm mb-2">
-                  <span className="text-gray-400">Spent: {formatCurrency(spent)}</span>
-                  <span className={isOverBudget ? 'text-red-400' : isWarning ? 'text-amber-400' : 'text-emerald-400'}>
+                  <span className={isDark ? 'text-gray-400' : 'text-gray-600'}>Spent: {formatCurrency(spent)}</span>
+                  <span className={isOverBudget ? 'text-red-500' : isWarning ? 'text-amber-500' : 'text-emerald-500'}>
                     {percentage.toFixed(0)}%
                   </span>
                 </div>
-                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                <div className={`h-2 rounded-full overflow-hidden ${isDark ? 'bg-white/10' : 'bg-gray-200'}`}>
                   <div
                     className={`h-full rounded-full transition-all ${
                       isOverBudget ? 'bg-red-500' : isWarning ? 'bg-amber-500' : 'bg-emerald-500'
@@ -1482,7 +1482,7 @@ function SettingsTab({
                   />
                 </div>
                 {isOverBudget && (
-                  <p className="mt-2 text-xs text-red-400 flex items-center gap-1">
+                  <p className="mt-2 text-xs text-red-500 flex items-center gap-1">
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                     </svg>
