@@ -958,17 +958,19 @@ function InsightsTab({
   insights,
   categories,
   transactions,
+  isDark,
 }: {
   insights: ReturnType<typeof useFinanceState>['insights'];
   categories: ReturnType<typeof useFinanceState>['state']['categories'];
   transactions: Transaction[];
+  isDark: boolean;
 }) {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
-          <h3 className="text-lg font-semibold mb-4 text-white">Expense Breakdown</h3>
-          <PieChart data={insights.topExpenseCategories} categories={categories} />
+        <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Expense Breakdown</h3>
+          <PieChart data={insights.topExpenseCategories} categories={categories} isDark={isDark} />
           <div className="mt-4 space-y-2">
             {insights.topExpenseCategories.map((item) => {
               const category = getCategoryById(categories, item.categoryId);
@@ -976,10 +978,10 @@ function InsightsTab({
                 <div key={item.categoryId} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: category?.color }} />
-                    <span className="text-sm text-gray-300">{category?.icon} {category?.name}</span>
+                    <span className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{category?.icon} {category?.name}</span>
                   </div>
                   <div className="text-right">
-                    <span className="text-sm font-medium text-white">{formatCurrency(item.amount)}</span>
+                    <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(item.amount)}</span>
                     <span className="text-xs text-gray-500 ml-2">({item.percentage.toFixed(1)}%)</span>
                   </div>
                 </div>
@@ -988,25 +990,25 @@ function InsightsTab({
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
-          <h3 className="text-lg font-semibold mb-4 text-white">Financial Summary</h3>
+        <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Financial Summary</h3>
           <div className="space-y-6">
-            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-              <p className="text-sm text-emerald-400 mb-1">Total Income</p>
-              <p className="text-2xl font-bold text-white">{formatCurrency(insights.totalIncome)}</p>
+            <div className={`p-4 rounded-xl border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'}`}>
+              <p className="text-sm text-emerald-600 mb-1">Total Income</p>
+              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.totalIncome)}</p>
             </div>
-            <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
-              <p className="text-sm text-rose-400 mb-1">Total Expenses</p>
-              <p className="text-2xl font-bold text-white">{formatCurrency(insights.totalExpenses)}</p>
+            <div className={`p-4 rounded-xl border ${isDark ? 'bg-rose-500/10 border-rose-500/20' : 'bg-rose-50 border-rose-200'}`}>
+              <p className="text-sm text-rose-600 mb-1">Total Expenses</p>
+              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.totalExpenses)}</p>
             </div>
-            <div className={`p-4 rounded-xl ${insights.netSavings >= 0 ? 'bg-cyan-500/10 border-cyan-500/20' : 'bg-amber-500/10 border-amber-500/20'} border`}>
-              <p className={`text-sm ${insights.netSavings >= 0 ? 'text-cyan-400' : 'text-amber-400'} mb-1`}>Net Savings</p>
-              <p className="text-2xl font-bold text-white">{formatCurrency(insights.netSavings)}</p>
+            <div className={`p-4 rounded-xl border ${insights.netSavings >= 0 ? (isDark ? 'bg-cyan-500/10 border-cyan-500/20' : 'bg-cyan-50 border-cyan-200') : (isDark ? 'bg-amber-500/10 border-amber-500/20' : 'bg-amber-50 border-amber-200')}`}>
+              <p className={`text-sm mb-1 ${insights.netSavings >= 0 ? 'text-cyan-600' : 'text-amber-600'}`}>Net Savings</p>
+              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.netSavings)}</p>
             </div>
-            <div className="p-4 rounded-xl bg-violet-500/10 border border-violet-500/20">
-              <p className="text-sm text-violet-400 mb-1">Savings Rate</p>
-              <p className="text-2xl font-bold text-white">{insights.savingsRate.toFixed(1)}%</p>
-              <div className="mt-2 h-2 bg-white/10 rounded-full overflow-hidden">
+            <div className={`p-4 rounded-xl border ${isDark ? 'bg-violet-500/10 border-violet-500/20' : 'bg-violet-50 border-violet-200'}`}>
+              <p className="text-sm text-violet-600 mb-1">Savings Rate</p>
+              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{insights.savingsRate.toFixed(1)}%</p>
+              <div className={`mt-2 h-2 rounded-full overflow-hidden ${isDark ? 'bg-white/10' : 'bg-violet-200'}`}>
                 <div
                   className="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full"
                   style={{ width: `${Math.max(0, Math.min(100, insights.savingsRate))}%` }}
@@ -1017,25 +1019,25 @@ function InsightsTab({
         </div>
       </div>
 
-      <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
-        <h3 className="text-lg font-semibold mb-4 text-white">Monthly Trend</h3>
-        <LineChart data={insights.monthlyTrend} />
+      <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+        <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Monthly Trend</h3>
+        <LineChart data={insights.monthlyTrend} isDark={isDark} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white/5 rounded-2xl border border-white/10 p-6 text-center">
-          <p className="text-4xl font-bold text-emerald-400">{transactions.filter((t) => t.type === 'income').length}</p>
-          <p className="text-sm text-gray-400 mt-1">Income Transactions</p>
+        <div className={`rounded-2xl border p-6 text-center ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <p className="text-4xl font-bold text-emerald-500">{transactions.filter((t) => t.type === 'income').length}</p>
+          <p className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Income Transactions</p>
         </div>
-        <div className="bg-white/5 rounded-2xl border border-white/10 p-6 text-center">
-          <p className="text-4xl font-bold text-rose-400">{transactions.filter((t) => t.type === 'expense').length}</p>
-          <p className="text-sm text-gray-400 mt-1">Expense Transactions</p>
+        <div className={`rounded-2xl border p-6 text-center ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <p className="text-4xl font-bold text-rose-500">{transactions.filter((t) => t.type === 'expense').length}</p>
+          <p className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Expense Transactions</p>
         </div>
-        <div className="bg-white/5 rounded-2xl border border-white/10 p-6 text-center">
-          <p className="text-4xl font-bold text-cyan-400">
+        <div className={`rounded-2xl border p-6 text-center ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+          <p className="text-4xl font-bold text-cyan-500">
             {formatCurrency(insights.totalExpenses / Math.max(1, transactions.filter((t) => t.type === 'expense').length))}
           </p>
-          <p className="text-sm text-gray-400 mt-1">Avg. Expense</p>
+          <p className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Avg. Expense</p>
         </div>
       </div>
     </div>
