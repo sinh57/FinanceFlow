@@ -507,7 +507,7 @@ function InsightCard({
   );
 }
 
-function BarChart({ data, isDark }: { data: { month: string; income: number; expenses: number }[]; isDark: boolean }) {
+function BarChart({ data, isDark, currency }: { data: { month: string; income: number; expenses: number }[]; isDark: boolean; currency: CurrencyCode }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
