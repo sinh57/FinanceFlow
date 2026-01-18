@@ -984,11 +984,13 @@ function InsightsTab({
   categories,
   transactions,
   isDark,
+  currency,
 }: {
   insights: ReturnType<typeof useFinanceState>['insights'];
   categories: ReturnType<typeof useFinanceState>['state']['categories'];
   transactions: Transaction[];
   isDark: boolean;
+  currency: CurrencyCode;
 }) {
   return (
     <div className="space-y-6">
