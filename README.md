@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FinanceFlow - Personal Finance Dashboard
+
+A modern, feature-rich personal finance management application built with Next.js 15, React 19, and TypeScript. Track your income, expenses, budgets, and financial insights with a beautiful, responsive UI.
+
+## Features
+
+- **Dashboard Overview** - Get a quick snapshot of your total balance, monthly income/expenses, and savings rate
+- **Transaction Management** - Add, view, filter, and delete transactions with categories and tags
+- **Budget Tracking** - Set monthly budgets for different categories and track spending
+- **Financial Insights** - Visualize spending patterns with charts and analytics
+- **Multi-Currency Support** - Switch between INR, USD, EUR, GBP, JPY, AUD, and CAD
+- **Dark/Light Theme** - Toggle between dark and light modes
+- **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
+- **Local Storage** - All data persists in browser storage
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: React Hooks with localStorage persistence
+- **Charts**: Custom Canvas-based visualizations
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/finance-dashboard.git
+cd finance-dashboard
+```
 
+2. Install dependencies:
+```bash
+npm install
+# or
+bun install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 # or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                 # Next.js app router pages
+├── components/          # React components
+│   └── FinanceDashboard.tsx  # Main dashboard component
+├── hooks/               # Custom React hooks
+│   └── useFinanceState.ts    # Finance state management
+└── lib/
+    └── finance/         # Finance utilities
+        ├── types.ts     # TypeScript interfaces
+        ├── utils.ts     # Helper functions
+        ├── data.ts      # Default data & storage
+        └── insights.ts  # Analytics calculations
+```
 
-## Learn More
+## Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+### Dashboard Overview
+The main dashboard shows key financial metrics, recent transactions, and budget status at a glance.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Transaction Management
+Filter and search through transactions, add new ones with categories and tags.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Financial Insights
+Visualize your spending patterns with interactive charts and detailed breakdowns.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MIT License - feel free to use this project for personal or commercial purposes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
