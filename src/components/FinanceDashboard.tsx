@@ -1026,11 +1026,11 @@ function InsightsTab({
             </div>
             <div className={`p-4 rounded-xl border ${isDark ? 'bg-rose-500/10 border-rose-500/20' : 'bg-rose-50 border-rose-200'}`}>
               <p className="text-sm text-rose-600 mb-1">Total Expenses</p>
-              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.totalExpenses)}</p>
+              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.totalExpenses, currency)}</p>
             </div>
             <div className={`p-4 rounded-xl border ${insights.netSavings >= 0 ? (isDark ? 'bg-cyan-500/10 border-cyan-500/20' : 'bg-cyan-50 border-cyan-200') : (isDark ? 'bg-amber-500/10 border-amber-500/20' : 'bg-amber-50 border-amber-200')}`}>
               <p className={`text-sm mb-1 ${insights.netSavings >= 0 ? 'text-cyan-600' : 'text-amber-600'}`}>Net Savings</p>
-              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.netSavings)}</p>
+              <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{formatCurrency(insights.netSavings, currency)}</p>
             </div>
             <div className={`p-4 rounded-xl border ${isDark ? 'bg-violet-500/10 border-violet-500/20' : 'bg-violet-50 border-violet-200'}`}>
               <p className="text-sm text-violet-600 mb-1">Savings Rate</p>
