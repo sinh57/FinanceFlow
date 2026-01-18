@@ -24,6 +24,7 @@ export function FinanceDashboard() {
     state,
     isLoaded,
     toggleTheme,
+    setCurrency,
     addTransaction,
     deleteTransaction,
     addAccount,
@@ -48,6 +49,7 @@ export function FinanceDashboard() {
   const [showAddBudget, setShowAddBudget] = useState(false);
 
   const isDark = state.theme === 'dark';
+  const currency = state.currency;
 
   const debouncedSearch = useMemo(
     () =>
