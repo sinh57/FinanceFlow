@@ -228,7 +228,7 @@ function TabNavigation({ activeTab, setActiveTab, isDark }: { activeTab: TabType
 
   return (
     <nav className="mb-8">
-      <div className="flex gap-1 p-1 bg-white/5 rounded-2xl border border-white/5 w-fit">
+      <div className={`flex gap-1 p-1 rounded-2xl border w-fit ${isDark ? 'bg-white/5 border-white/5' : 'bg-white border-gray-200 shadow-sm'}`}>
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -236,7 +236,7 @@ function TabNavigation({ activeTab, setActiveTab, isDark }: { activeTab: TabType
             className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
               activeTab === tab.id
                 ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-black shadow-lg shadow-emerald-500/20'
-                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                : isDark ? 'text-gray-400 hover:text-white hover:bg-white/5' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
             }`}
           >
             {tab.icon}
