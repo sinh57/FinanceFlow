@@ -1553,18 +1553,18 @@ function SettingsTab({
         )}
       </div>
 
-      <div className="bg-white/5 rounded-2xl border border-white/10 p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Danger Zone</h3>
-        <p className="text-sm text-gray-400 mb-4">
+      <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
+        <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Danger Zone</h3>
+        <p className={`text-sm mb-4 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
           Reset all data to defaults. This will delete all your transactions, accounts, and budgets.
         </p>
         <button
           onClick={() => {
-            if (confirm('Are you sure you want to reset all data? This action cannot be undone.')) {
+            if (window.confirm('Are you sure you want to reset all data? This action cannot be undone.')) {
               reset();
             }
           }}
-          className="px-6 py-2.5 bg-red-500/20 border border-red-500/30 text-red-400 rounded-xl hover:bg-red-500/30 transition font-medium"
+          className={`px-6 py-2.5 border rounded-xl transition font-medium ${isDark ? 'bg-red-500/20 border-red-500/30 text-red-400 hover:bg-red-500/30' : 'bg-red-50 border-red-200 text-red-600 hover:bg-red-100'}`}
         >
           Reset All Data
         </button>
