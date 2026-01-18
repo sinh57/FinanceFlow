@@ -7,6 +7,7 @@ import {
   Account,
   Budget,
   FilterOptions,
+  CurrencyCode,
   loadState,
   saveState,
   getDefaultState,
