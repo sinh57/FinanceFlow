@@ -185,7 +185,7 @@ function Header({ theme, toggleTheme, isDark }: { theme: 'light' | 'dark'; toggl
   );
 }
 
-function TabNavigation({ activeTab, setActiveTab }: { activeTab: TabType; setActiveTab: (tab: TabType) => void }) {
+function TabNavigation({ activeTab, setActiveTab, isDark }: { activeTab: TabType; setActiveTab: (tab: TabType) => void; isDark: boolean }) {
   const tabs: { id: TabType; label: string; icon: ReactNode }[] = [
     {
       id: 'overview',
