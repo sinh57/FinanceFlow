@@ -1497,7 +1497,7 @@ function SettingsTab({
                   </div>
                 </div>
                 <div className="flex items-center justify-between text-sm mb-2">
-                  <span className={isDark ? 'text-gray-400' : 'text-gray-600'}>Spent: {formatCurrency(spent)}</span>
+                  <span className={isDark ? 'text-gray-400' : 'text-gray-600'}>Spent: {formatCurrency(spent, currency)}</span>
                   <span className={isOverBudget ? 'text-red-500' : isWarning ? 'text-amber-500' : 'text-emerald-500'}>
                     {percentage.toFixed(0)}%
                   </span>
