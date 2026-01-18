@@ -282,6 +282,7 @@ function OverviewTab({
   expenseTrend,
   recentTransactions,
   isDark,
+  currency,
 }: {
   accounts: Account[];
   totalBalance: number;
@@ -291,13 +292,14 @@ function OverviewTab({
   expenseTrend: 'up' | 'down' | 'stable';
   recentTransactions: Transaction[];
   isDark: boolean;
+  currency: CurrencyCode;
 }) {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <InsightCard
           title="Total Balance"
-          value={formatCurrency(totalBalance)}
+          value={formatCurrency(totalBalance, currency)}
           icon={
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -308,7 +310,7 @@ function OverviewTab({
         />
         <InsightCard
           title="Monthly Income"
-          value={formatCurrency(insights.totalIncome)}
+          value={formatCurrency(insights.totalIncome, currency)}
           icon={
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
@@ -319,7 +321,7 @@ function OverviewTab({
         />
         <InsightCard
           title="Monthly Expenses"
-          value={formatCurrency(insights.totalExpenses)}
+          value={formatCurrency(insights.totalExpenses, currency)}
           trend={expenseTrend}
           icon={
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -345,7 +347,7 @@ function OverviewTab({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className={`lg:col-span-2 rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
           <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Income vs Expenses</h3>
-          <BarChart data={insights.monthlyTrend} isDark={isDark} />
+          <BarChart data={insights.monthlyTrend} isDark={isDark} currency={currency} />
         </div>
 
         <div className={`rounded-2xl border p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200 shadow-sm'}`}>
@@ -363,7 +365,7 @@ function OverviewTab({
                     <p className="text-xs text-gray-500 capitalize">{account.type}</p>
                   </div>
                 </div>
-                <p className="font-semibold text-emerald-500">{formatCurrency(account.balance)}</p>
+                <p className="font-semibold text-emerald-500">{formatCurrency(account.balance, currency)}</p>
               </div>
             ))}
           </div>
@@ -384,7 +386,7 @@ function OverviewTab({
                       <span className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{category?.name}</span>
                     </div>
                     <span className={`text-sm font-semibold ${isOverBudget ? 'text-red-500' : isWarning ? 'text-amber-500' : 'text-emerald-500'}`}>
-                      {formatCurrency(spent)} / {formatCurrency(budget.limit)}
+                      {formatCurrency(spent, currency)} / {formatCurrency(budget.limit, currency)}
                     </span>
                   </div>
                   <div className={`h-2 rounded-full overflow-hidden ${isDark ? 'bg-white/10' : 'bg-gray-200'}`}>
@@ -419,7 +421,7 @@ function OverviewTab({
                     </div>
                   </div>
                   <p className={`font-semibold ${transaction.type === 'income' ? 'text-emerald-500' : 'text-rose-500'}`}>
-                    {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount)}
+                    {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount, currency)}
                   </p>
                 </div>
               );
