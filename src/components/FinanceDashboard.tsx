@@ -416,56 +416,67 @@ function InsightCard({
   icon,
   color,
   trend,
+  isDark,
 }: {
   title: string;
   value: string;
   icon: ReactNode;
   color: 'emerald' | 'cyan' | 'rose' | 'violet';
   trend?: 'up' | 'down' | 'stable';
+  isDark: boolean;
 }) {
-  const colorClasses = {
+  const darkColorClasses = {
     emerald: 'from-emerald-500/20 to-emerald-500/5 border-emerald-500/20 text-emerald-400',
     cyan: 'from-cyan-500/20 to-cyan-500/5 border-cyan-500/20 text-cyan-400',
     rose: 'from-rose-500/20 to-rose-500/5 border-rose-500/20 text-rose-400',
     violet: 'from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-400',
   };
 
+  const lightColorClasses = {
+    emerald: 'from-emerald-100 to-emerald-50 border-emerald-200 text-emerald-600',
+    cyan: 'from-cyan-100 to-cyan-50 border-cyan-200 text-cyan-600',
+    rose: 'from-rose-100 to-rose-50 border-rose-200 text-rose-600',
+    violet: 'from-violet-100 to-violet-50 border-violet-200 text-violet-600',
+  };
+
+  const colorClasses = isDark ? darkColorClasses : lightColorClasses;
+
   return (
     <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${colorClasses[color]} border p-5`}>
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm text-gray-400 mb-1">{title}</p>
-          <p className="text-2xl font-bold text-white">{value}</p>
+          <p className={`text-sm mb-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{title}</p>
+          <p className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{value}</p>
           {trend && (
             <div className="flex items-center gap-1 mt-2">
               {trend === 'up' && (
                 <>
-                  <svg className="w-4 h-4 text-rose-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 text-rose-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-xs text-rose-400">Trending up</span>
+                  <span className="text-xs text-rose-500">Trending up</span>
                 </>
               )}
               {trend === 'down' && (
                 <>
-                  <svg className="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-xs text-emerald-400">Trending down</span>
+                  <span className="text-xs text-emerald-500">Trending down</span>
                 </>
               )}
               {trend === 'stable' && (
                 <>
-                  <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-xs text-gray-400">Stable</span>
+                  <span className="text-xs text-gray-500">Stable</span>
                 </>
               )}
             </div>
           )}
         </div>
-        <div className={`p-3 rounded-xl bg-white/10 ${colorClasses[color].split(' ').pop()}`}>
+        <div className={`p-3 rounded-xl ${isDark ? 'bg-white/10' : 'bg-white/60'} ${colorClasses[color].split(' ').pop()}`}>
           {icon}
         </div>
       </div>
