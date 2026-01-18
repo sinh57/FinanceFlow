@@ -484,7 +484,7 @@ function InsightCard({
   );
 }
 
-function BarChart({ data }: { data: { month: string; income: number; expenses: number }[] }) {
+function BarChart({ data, isDark }: { data: { month: string; income: number; expenses: number }[]; isDark: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -512,7 +512,12 @@ function BarChart({ data }: { data: { month: string; income: number; expenses: n
     const barWidth = chartWidth / data.length / 3;
     const barGap = barWidth * 0.5;
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+    const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+    const textColor = isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.5)';
+    const labelColor = isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.6)';
+    const legendColor = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)';
+
+    ctx.strokeStyle = gridColor;
     ctx.lineWidth = 1;
     for (let i = 0; i <= 4; i++) {
       const y = padding.top + (chartHeight / 4) * i;
@@ -521,7 +526,7 @@ function BarChart({ data }: { data: { month: string; income: number; expenses: n
       ctx.lineTo(width - padding.right, y);
       ctx.stroke();
 
-      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      ctx.fillStyle = textColor;
       ctx.font = '11px system-ui';
       ctx.textAlign = 'right';
       const value = maxValue - (maxValue / 4) * i;
@@ -545,7 +550,7 @@ function BarChart({ data }: { data: { month: string; income: number; expenses: n
       ctx.fillStyle = expenseGradient;
       roundedRect(ctx, x + barGap / 2, height - padding.bottom - expenseHeight, barWidth, expenseHeight, 4);
 
-      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      ctx.fillStyle = labelColor;
       ctx.font = '10px system-ui';
       ctx.textAlign = 'center';
       ctx.fillText(d.month.split(' ')[0], x, height - padding.bottom + 20);
@@ -553,16 +558,16 @@ function BarChart({ data }: { data: { month: string; income: number; expenses: n
 
     ctx.fillStyle = '#06b6d4';
     ctx.fillRect(width - 140, 8, 12, 12);
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillStyle = legendColor;
     ctx.font = '11px system-ui';
     ctx.textAlign = 'left';
     ctx.fillText('Income', width - 122, 18);
 
     ctx.fillStyle = '#f43f5e';
     ctx.fillRect(width - 70, 8, 12, 12);
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillStyle = legendColor;
     ctx.fillText('Expenses', width - 52, 18);
-  }, [data]);
+  }, [data, isDark]);
 
   return (
     <canvas
