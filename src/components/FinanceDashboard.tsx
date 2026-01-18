@@ -1047,9 +1047,11 @@ function InsightsTab({
 function PieChart({
   data,
   categories,
+  isDark,
 }: {
   data: { categoryId: string; amount: number; percentage: number }[];
   categories: ReturnType<typeof useFinanceState>['state']['categories'];
+  isDark: boolean;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -1089,9 +1091,9 @@ function PieChart({
 
     ctx.beginPath();
     ctx.arc(centerX, centerY, innerRadius, 0, 2 * Math.PI);
-    ctx.fillStyle = '#0a0a0f';
+    ctx.fillStyle = isDark ? '#0a0a0f' : '#ffffff';
     ctx.fill();
-  }, [data, categories]);
+  }, [data, categories, isDark]);
 
   if (data.length === 0) {
     return (
